@@ -1,0 +1,15 @@
+.login-panel {
+  width: min(100%, 420px);
+}
+
+.login-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 0.95;
+}
+
+@media (max-width: 480px) {
+  .login-panel {
+    padding: 32px 20px;
+  }
+}

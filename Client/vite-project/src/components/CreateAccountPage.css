@@ -1,0 +1,9 @@
+.create-account-panel {
+  width: min(100%, 420px);
+}
+
+.create-account-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1;
+}

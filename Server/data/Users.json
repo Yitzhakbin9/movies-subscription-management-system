@@ -1,0 +1,30 @@
+[
+  {
+    "id": "507f1f77bcf86cd799439011",
+    "firstName": "John",
+    "lastName": "Doe",
+    "createdDate": "2026-04-15T10:30:00Z",
+    "sessionTimeout": 30
+  },
+  {
+    "id": "507f1f77bcf86cd799439012",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "createdDate": "2026-04-20T14:45:00Z",
+    "sessionTimeout": 45
+  },
+  {
+    "id": "507f1f77bcf86cd799439013",
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "createdDate": "2026-04-25T09:15:00Z",
+    "sessionTimeout": 60
+  },
+  {
+    "id": "69f8d23a5276b9eb4bc9537a",
+    "firstName": "Michael",
+    "lastName": "David",
+    "createdDate": "2026-05-04T17:07:06.037Z",
+    "sessionTimeout": 30
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+  
+    {
+      "name": "Backend (tsx watch)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}/Server/CinemaWS",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Backend (Direct - Node Inspector)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/Server/CinemaWS/index.ts",
+      "runtimeArgs": ["--loader", "tsx"],
+      "cwd": "${workspaceFolder}/Server/CinemaWS",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true
+    },
+    {
+      "name": "SubscriptionWS (tsx watch)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}/Server/SubscriptionWS",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "SubscriptionWS (Direct - Node Inspector)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/Server/SubscriptionWS/index.ts",
+      "runtimeArgs": ["--loader", "tsx"],
+      "cwd": "${workspaceFolder}/Server/SubscriptionWS",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true
+    },
+    {
+      "name": "Frontend (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/Client/vite-project/src",
+      "sourceMaps": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack (Backend + Frontend)",
+      "configurations": ["Backend (tsx watch)", "Frontend (Chrome)"]
+    },
+    {
+      "name": "Full Stack (SubscriptionWS + Frontend)",
+      "configurations": ["SubscriptionWS (tsx watch)", "Frontend (Chrome)"]
+    }
+  ]
+}

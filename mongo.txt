@@ -1,0 +1,17 @@
+1. להפעיל את MongoDB
+
+brew services start mongodb-community
+
+
+2. לבדוק שהכל עובד (מומלץ)
+mongosh
+
+יציאה מ־mongosh:
+exit
+
+
+חיבור ב־Compass:
+mongodb://127.0.0.1:27017/cinema_ws
+
+3. להפעיל את השרת שלך (Node)
+npm run dev
