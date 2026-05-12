@@ -2,8 +2,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import CreateAccountPage from './components/CreateAccountPage';
 import LoginPage from './components/LoginPage';
 
-// check commit for git
-
 function App() {
   return (
     <Routes>
