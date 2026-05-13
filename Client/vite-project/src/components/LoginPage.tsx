@@ -1,12 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import type { AppDispatch } from '../app/store';
 import { login } from '../features/auth/authSlice';
 import './LoginPage.css';
 
 function LoginPage() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,11 +27,13 @@ function LoginPage() {
         id: crypto.randomUUID(),
         username: trimmedUsername,
         joinedAt: new Date().toISOString(),
+        role: trimmedUsername.toLowerCase() === 'admin' ? 'Admin' : 'User',
       })
     );
 
     setUsername(trimmedUsername);
     setPassword('');
+    navigate('/main');
   };
 
   return (

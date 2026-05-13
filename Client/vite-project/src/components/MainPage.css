@@ -1,0 +1,14 @@
+.main-page-panel {
+  width: min(100%, 520px);
+}
+
+.main-page-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 0.95;
+}
+
+.main-page-grid {
+  display: grid;
+  gap: 14px;
+}

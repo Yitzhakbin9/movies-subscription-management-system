@@ -2,6 +2,9 @@ import type { AuthState } from './authSlice';
 
 const AUTH_STORAGE_KEY = 'auth';
 
+const getRoleFromUsername = (username: string): 'Admin' | 'User' =>
+  username.trim().toLowerCase() === 'admin' ? 'Admin' : 'User';
+
 export const loadAuthState = (): AuthState | undefined => {
   // This guard keeps the helper safe if the code ever runs outside the browser.
   if (typeof window === 'undefined') {
@@ -22,7 +25,13 @@ export const loadAuthState = (): AuthState | undefined => {
       return undefined;
     }
 
-    return parsedAuth;
+    return {
+      ...parsedAuth,
+      user: {
+        ...parsedAuth.user,
+        role: parsedAuth.user.role ?? getRoleFromUsername(parsedAuth.user.username),
+      },
+    };
   } catch {
     return undefined;
   }

@@ -4,6 +4,7 @@ export interface AuthUser {
   id: string;
   username: string;
   joinedAt: string;
+  role: 'Admin' | 'User';
 }
 
 export interface AuthState {
