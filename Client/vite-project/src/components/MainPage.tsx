@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '../app/store';
 import { logout } from '../features/auth/authSlice';
 import './MainPage.css';
@@ -25,22 +25,23 @@ function MainPage() {
         </p>
 
         <div className="main-page-grid">
-          <button className="button-primary" type="button">
+          <Link className="button-primary button-link" to="/movies">
             Movies
-          </button>
-          <button className="button-primary" type="button">
-            Subscreptions
-          </button>
-            <button className="button-primary" type="button">
-              User Managment
-            </button>
-      
+          </Link>
+          <Link className="button-primary button-link" to="/subscriptions">
+            Subscriptions
+          </Link>
+
           {user?.role === 'Admin' ? (
-            <button className="button-primary" type="button">
-              User Managment
-            </button>
+            <Link className="button-primary button-link" to="/manage-users">
+              Users Management
+            </Link>
           ) : null}
-          <button className="button-secondary" type="button" onClick={handleLogout}>
+          <button
+            className="button-secondary"
+            type="button"
+            onClick={handleLogout}
+          >
             Log out
           </button>
         </div>

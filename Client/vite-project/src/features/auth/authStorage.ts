@@ -1,7 +1,7 @@
 import type { AuthState } from './authSlice';
 
 const AUTH_STORAGE_KEY = 'auth';
-
+debugger;
 const getRoleFromUsername = (username: string): 'Admin' | 'User' =>
   username.trim().toLowerCase() === 'admin' ? 'Admin' : 'User';
 

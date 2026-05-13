@@ -4,7 +4,7 @@ import { loadAuthState, saveAuthState } from '../features/auth/authStorage';
 
 // Bootstrap Redux from persisted auth so refresh does not wipe the local session.
 const preloadedAuthState = loadAuthState();
-
+debugger;
 export const store = configureStore({
   reducer: {
     auth: authReducer,

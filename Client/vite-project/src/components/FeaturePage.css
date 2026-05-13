@@ -1,0 +1,44 @@
+.feature-page-panel {
+  width: min(100%, 720px);
+}
+
+.feature-page-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 0.95;
+}
+
+.feature-page-content {
+  display: grid;
+  gap: 18px;
+}
+
+.feature-page-section {
+  padding: 20px;
+  border: 1px solid var(--panel-border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.feature-page-section h2 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.feature-page-section p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.feature-page-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (min-width: 640px) {
+  .feature-page-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
