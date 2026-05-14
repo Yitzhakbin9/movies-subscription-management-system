@@ -2,9 +2,12 @@ import type { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CreateAccountPage from './components/CreateAccountPage';
+import ManageUsersAddUserView from './components/ManageUsersAddUserView';
 import LoginPage from './components/LoginPage';
 import ManageUsersPage from './components/ManageUsersPage';
+import ManageUsersUsersView from './components/ManageUsersUsersView';
 import MainPage from './components/MainPage';
+import MainPageOverview from './components/MainPageOverview';
 import MoviesPage from './components/MoviesPage';
 import SubscriptionsPage from './components/SubscriptionsPage';
 import type { RootState } from './app/store';
@@ -55,31 +58,23 @@ function App() {
             <MainPage />
           </ProtectedRoute>
         }
-      />
-      <Route
-        path="/movies"
-        element={
-          <ProtectedRoute>
-            <MoviesPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/subscriptions"
-        element={
-          <ProtectedRoute>
-            <SubscriptionsPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/manage-users"
-        element={
-          <AdminRoute>
-            <ManageUsersPage />
-          </AdminRoute>
-        }
-      />
+      >
+        <Route index element={<MainPageOverview />} />
+        <Route path="movies" element={<MoviesPage />} />
+        <Route path="subscriptions" element={<SubscriptionsPage />} />
+        <Route
+          path="manage-users"
+          element={
+            <AdminRoute>
+              <ManageUsersPage />
+            </AdminRoute>
+          }
+        >
+          <Route index element={<ManageUsersUsersView />} />
+          <Route path="add-user" element={<ManageUsersAddUserView />} />
+        </Route>
+      </Route>
+      
       <Route
         path="*"
         element={<Navigate to={isAuthenticated ? '/main' : '/login'} replace />}

@@ -1,37 +1,41 @@
-import { Link } from 'react-router-dom';
-import '../css/FeaturePage.css';
+import { NavLink, Outlet } from 'react-router-dom';
+import '../css/ManageUsersPage.css';
 
 function ManageUsersPage() {
   return (
-    <main className="page-shell">
-      <section className="auth-card feature-page-panel">
-        <p className="section-eyebrow">Cinema Management</p>
-        <h1 className="feature-page-title">Manage Users</h1>
-        <p className="page-description">
-          This page is available only to the system Admin. We can use it for
-          the users table, permissions management, and account actions.
-        </p>
+    <section className="manage-users-panel">
+      <h2 className="manage-users-title">Manage Users</h2>
+      <p className="page-description">
+        Choose a section from the menu to view all users or move to the Add
+        User page.
+      </p>
 
-        <div className="feature-page-content">
-          <article className="feature-page-section">
-            <h2>What this page will handle</h2>
-            <p>
-              Manage application users, assign permissions, and control who can
-              access movies and subscriptions features.
-            </p>
-          </article>
+      <nav className="manage-users-menu" aria-label="Manage users sections">
+        <NavLink
+          end
+          className={({ isActive }) =>
+            `button-link manage-users-tab ${
+              isActive ? 'manage-users-tab-active' : 'manage-users-tab-idle'
+            }`
+          }
+          to="."
+        >
+          All Users
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `button-link manage-users-tab ${
+              isActive ? 'manage-users-tab-active' : 'manage-users-tab-idle'
+            }`
+          }
+          to="add-user"
+        >
+          Add User
+        </NavLink>
+      </nav>
 
-          <div className="feature-page-actions">
-            <Link className="button-primary button-link" to="/main">
-              Back to Main Page
-            </Link>
-            <Link className="button-secondary button-link" to="/movies">
-              Go to Movies
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
+      <Outlet />
+    </section>
   );
 }
 

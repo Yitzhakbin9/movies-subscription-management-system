@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '../app/store';
 import { logout } from '../features/auth/authSlice';
 import '../css/MainPage.css';
@@ -17,33 +17,62 @@ function MainPage() {
   return (
     <main className="page-shell">
       <section className="auth-card main-page-panel">
-        <p className="section-eyebrow">Cinema Management</p>
-        <h1 className="main-page-title">Main Page</h1>
-        <p className="page-description">
-          Welcome{user ? `, ${user.username}` : ''}. Choose where you want to go
-          next.
-        </p>
+        <div className="main-page-content">
+          <header>
+            <p className="section-eyebrow">Cinema Management</p>
+            <h1 className="main-page-title">Main Page</h1>
+            <p className="page-description">
+              Welcome{user ? `, ${user.username}` : ''}. Choose where you want
+              to go next.
+            </p>
+          </header>
 
-        <div className="main-page-grid">
-          <Link className="button-primary button-link" to="/movies">
-            Movies
-          </Link>
-          <Link className="button-primary button-link" to="/subscriptions">
-            Subscriptions
-          </Link>
+          <nav className="main-page-grid" aria-label="Main page sections">
+            <NavLink
+              className={({ isActive }) =>
+                `button-link main-page-tab ${
+                  isActive ? 'main-page-tab-active' : 'main-page-tab-idle'
+                }`
+              }
+              to="movies"
+            >
+              Movies
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `button-link main-page-tab ${
+                  isActive ? 'main-page-tab-active' : 'main-page-tab-idle'
+                }`
+              }
+              to="subscriptions"
+            >
+              Subscriptions
+            </NavLink>
 
-          {user?.role === 'Admin' ? (
-            <Link className="button-primary button-link" to="/manage-users">
-              Users Management
-            </Link>
-          ) : null}
-          <button
-            className="button-secondary"
-            type="button"
-            onClick={handleLogout}
-          >
-            Log out
-          </button>
+            {user?.role === 'Admin' ? (
+              <NavLink
+                className={({ isActive }) =>
+                  `button-link main-page-tab ${
+                    isActive ? 'main-page-tab-active' : 'main-page-tab-idle'
+                  }`
+                }
+                to="manage-users"
+              >
+                Users Management
+              </NavLink>
+            ) : null}
+            <button
+              className="button-secondary"
+              type="button"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          </nav>
+
+          <div className="main-page-outlet">
+            <Outlet />
+          </div>
         </div>
       </section>
     </main>

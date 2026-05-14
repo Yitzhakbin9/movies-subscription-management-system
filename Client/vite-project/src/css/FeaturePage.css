@@ -1,5 +1,7 @@
 .feature-page-panel {
-  width: min(100%, 720px);
+  width: 100%;
+  display: grid;
+  gap: 18px;
 }
 
 .feature-page-title {
