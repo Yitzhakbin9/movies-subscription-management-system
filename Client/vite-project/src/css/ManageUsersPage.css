@@ -110,6 +110,26 @@
   word-break: break-word;
 }
 
+.user-detail-permissions {
+  grid-column: 1 / -1;
+}
+
+.user-permissions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.user-permission-badge {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 202, 115, 0.24);
+  border-radius: 999px;
+  color: #ffe0a8;
+  background: rgba(245, 158, 11, 0.12);
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
 .user-list-item-actions {
   display: grid;
   gap: 12px;

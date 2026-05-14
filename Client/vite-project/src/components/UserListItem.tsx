@@ -27,6 +27,21 @@ function UserListItem({ user, onDelete, onEdit }: UserListItemProps) {
             <span className="user-detail-value">{String(user[field.valueKey])}</span>
           </div>
         ))}
+
+        <div className="user-detail user-detail-permissions">
+          <span className="user-detail-label">Permissions</span>
+          {user.permissions.length > 0 ? (
+            <div className="user-permissions-list">
+              {user.permissions.map((permission) => (
+                <span className="user-permission-badge" key={permission}>
+                  {permission}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <span className="user-detail-value">No permissions assigned</span>
+          )}
+        </div>
       </div>
 
       <div className="user-list-item-actions">
