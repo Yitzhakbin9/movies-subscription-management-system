@@ -1,7 +1,33 @@
+import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { mockManageUsers } from '../data/mockManageUsers';
+import type { ManageUsersOutletContext } from '../hooks/useManageUsersOutletContext';
+import type { ManageUser } from '../types/manageUser';
 import '../css/ManageUsersPage.css';
 
 function ManageUsersPage() {
+  const [users, setUsers] = useState<ManageUser[]>(mockManageUsers);
+
+  const handleDeleteUser = (userId: string) => {
+    setUsers((currentUsers) =>
+      currentUsers.filter((user) => user.id !== userId)
+    );
+  };
+
+  const handleUpdateUser = (updatedUser: ManageUser) => {
+    setUsers((currentUsers) =>
+      currentUsers.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      )
+    );
+  };
+
+  const outletContext: ManageUsersOutletContext = {
+    users,
+    deleteUser: handleDeleteUser,
+    updateUser: handleUpdateUser,
+  };
+
   return (
     <section className="manage-users-panel">
       <h2 className="manage-users-title">Manage Users</h2>
@@ -34,7 +60,7 @@ function ManageUsersPage() {
         </NavLink>
       </nav>
 
-      <Outlet />
+      <Outlet context={outletContext} />
     </section>
   );
 }

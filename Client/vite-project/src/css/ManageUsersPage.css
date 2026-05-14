@@ -126,6 +126,68 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
+.manage-user-form {
+  display: grid;
+  gap: 22px;
+}
+
+.manage-user-form-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.manage-user-readonly {
+  opacity: 0.78;
+}
+
+.manage-user-permissions {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  background: rgba(6, 14, 24, 0.3);
+}
+
+.manage-user-permissions-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.manage-user-permissions-text {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.manage-user-permissions-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.manage-user-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--field-border);
+  border-radius: 14px;
+  background: var(--field-background);
+  cursor: pointer;
+}
+
+.manage-user-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #f59e0b;
+}
+
+.manage-user-actions {
+  display: grid;
+  gap: 12px;
+}
+
 @media (min-width: 640px) {
   .manage-users-menu {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -143,6 +205,18 @@
   }
 
   .user-list-item-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .manage-user-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .manage-user-permissions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .manage-user-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -1,3 +1,5 @@
+import type { Permission } from '../constants/permissions';
+
 export interface ManageUser {
   name: string;
   password: string;
@@ -6,4 +8,5 @@ export interface ManageUser {
   lastName: string;
   createdDate: string;
   sessionTimeout: number;
+  permissions: Permission[];
 }

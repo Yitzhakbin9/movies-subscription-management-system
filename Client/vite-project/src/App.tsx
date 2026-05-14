@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CreateAccountPage from './components/CreateAccountPage';
+import EditUser from './components/EditUser';
 import ManageUsersAddUserView from './components/ManageUsersAddUserView';
 import LoginPage from './components/LoginPage';
 import ManageUsersPage from './components/ManageUsersPage';
@@ -72,6 +73,7 @@ function App() {
         >
           <Route index element={<ManageUsersUsersView />} />
           <Route path="add-user" element={<ManageUsersAddUserView />} />
+          <Route path="edit/:userId" element={<EditUser />} />
         </Route>
       </Route>
       
