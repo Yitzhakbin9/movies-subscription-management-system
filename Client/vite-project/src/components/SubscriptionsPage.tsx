@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './FeaturePage.css';
+import '../css/FeaturePage.css';
 
 function SubscriptionsPage() {
   return (

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '../app/store';
 import { logout } from '../features/auth/authSlice';
-import './MainPage.css';
+import '../css/MainPage.css';
 
 function MainPage() {
   const dispatch = useDispatch<AppDispatch>();

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import type { AppDispatch } from '../app/store';
 import { login } from '../features/auth/authSlice';
-import './LoginPage.css';
+import '../css/LoginPage.css';
 
 function LoginPage() {
   const dispatch = useDispatch<AppDispatch>();

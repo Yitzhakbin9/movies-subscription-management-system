@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import './CreateAccountPage.css';
+import '../css/CreateAccountPage.css';
 
 function CreateAccountPage() {
   const [username, setUsername] = useState('');
