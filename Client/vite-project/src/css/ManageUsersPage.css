@@ -45,6 +45,8 @@
 }
 
 .manage-users-card {
+  display: grid;
+  gap: 18px;
   padding: 24px;
   border: 1px solid var(--panel-border);
   border-radius: 24px;
@@ -62,8 +64,85 @@
   line-height: 1.6;
 }
 
+.manage-users-status {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 202, 115, 0.28);
+  border-radius: 16px;
+  color: #ffe0a8;
+  background: rgba(245, 158, 11, 0.12);
+}
+
+.users-list {
+  display: grid;
+  gap: 16px;
+}
+
+.user-list-item {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  background: rgba(6, 14, 24, 0.38);
+}
+
+.user-list-item-details {
+  display: grid;
+  gap: 12px;
+}
+
+.user-detail {
+  display: grid;
+  gap: 4px;
+}
+
+.user-detail-label {
+  color: var(--text-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.user-detail-value {
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.user-list-item-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.user-action-button {
+  width: 100%;
+}
+
+.manage-users-empty-state {
+  padding: 18px;
+  border: 1px dashed var(--panel-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
 @media (min-width: 640px) {
   .manage-users-menu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .user-list-item-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 760px) {
+  .user-list-item {
+    grid-template-columns: minmax(0, 1fr) 180px;
+    align-items: start;
+  }
+
+  .user-list-item-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
