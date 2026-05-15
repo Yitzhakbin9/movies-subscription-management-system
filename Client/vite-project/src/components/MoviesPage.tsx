@@ -73,17 +73,6 @@ function MoviesPage() {
         </NavLink>
       </nav>
 
-      <label className="field manage-movie-search">
-        <span className="field-label">Search Movie By Name</span>
-        <input
-          type="text"
-          name="searchMovie"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-          placeholder="Type a movie name"
-        />
-      </label>
-
       <Outlet context={outletContext} />
     </section>
   );

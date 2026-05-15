@@ -4,7 +4,8 @@ import MoviesList from './MoviesList';
 
 function MoviesAllMoviesView() {
   const navigate = useNavigate();
-  const { filteredMovies, searchTerm, deleteMovie } = useMoviesOutletContext();
+  const { filteredMovies, searchTerm, setSearchTerm, deleteMovie } =
+    useMoviesOutletContext();
 
   const handleDeleteMovie = (movieId: string) => {
     deleteMovie(movieId);
@@ -22,6 +23,17 @@ function MoviesAllMoviesView() {
           This area shows all movies together with their image, details, and
           the subscriptions that watched them.
         </p>
+
+        <label className="field manage-movie-search">
+          <span className="field-label">Search Movie By Name</span>
+          <input
+            type="text"
+            name="searchMovie"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            placeholder="Type a movie name"
+          />
+        </label>
 
         {searchTerm.trim() ? (
           <p className="manage-users-section-text">
