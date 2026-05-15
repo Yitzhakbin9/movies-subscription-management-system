@@ -11,6 +11,7 @@ function ManageUsersUsersView() {
   };
 
   const handleEditUser = (userId: string) => {
+    debugger
     navigate(`/main/manage-users/edit/${userId}`);
   };
 
