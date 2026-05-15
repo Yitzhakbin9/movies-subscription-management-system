@@ -1,23 +1,71 @@
-import '../css/FeaturePage.css';
+import { useState } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { mockMovies } from '../data/mockMovies';
+import type { MoviesOutletContext } from '../hooks/useMoviesOutletContext';
+import type { ManageMovie } from '../types/manageMovie';
+import '../css/ManageUsersPage.css';
 
 function MoviesPage() {
+  const [movies, setMovies] = useState<ManageMovie[]>(mockMovies);
+
+  const handleAddMovie = (newMovie: ManageMovie) => {
+    setMovies((currentMovies) => [...currentMovies, newMovie]);
+  };
+
+  const handleDeleteMovie = (movieId: string) => {
+    setMovies((currentMovies) =>
+      currentMovies.filter((movie) => movie.id !== movieId)
+    );
+  };
+
+  const handleUpdateMovie = (updatedMovie: ManageMovie) => {
+    setMovies((currentMovies) =>
+      currentMovies.map((movie) =>
+        movie.id === updatedMovie.id ? updatedMovie : movie
+      )
+    );
+  };
+
+  const outletContext: MoviesOutletContext = {
+    movies,
+    addMovie: handleAddMovie,
+    deleteMovie: handleDeleteMovie,
+    updateMovie: handleUpdateMovie,
+  };
+
   return (
-    <section className="feature-page-panel">
-      <h2 className="feature-page-title">Movies</h2>
+    <section className="manage-users-panel">
+      <h2 className="manage-users-title">Movies</h2>
       <p className="page-description">
-        This is the movies area. From here we can build the movie list, movie
-        creation flow, and the edit/delete actions.
+        Choose a section from the menu to view all movies or move to the Add
+        Movie page.
       </p>
 
-      <div className="feature-page-content">
-        <article className="feature-page-section">
-          <h3>What this page will handle</h3>
-          <p>
-            Show all movies, filter the list, and connect the page to the
-            backend once we start the movie management logic.
-          </p>
-        </article>
-      </div>
+      <nav className="manage-users-menu" aria-label="Movies sections">
+        <NavLink
+          end
+          className={({ isActive }) =>
+            `button-link manage-users-tab ${
+              isActive ? 'manage-users-tab-active' : 'manage-users-tab-idle'
+            }`
+          }
+          to="."
+        >
+          All Movies
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `button-link manage-users-tab ${
+              isActive ? 'manage-users-tab-active' : 'manage-users-tab-idle'
+            }`
+          }
+          to="add-movie"
+        >
+          Add Movie
+        </NavLink>
+      </nav>
+
+      <Outlet context={outletContext} />
     </section>
   );
 }

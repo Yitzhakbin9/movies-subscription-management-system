@@ -9,6 +9,9 @@ import ManageUsersPage from './components/ManageUsersPage';
 import ManageUsersUsersView from './components/ManageUsersUsersView';
 import MainPage from './components/MainPage';
 import MainPageOverview from './components/MainPageOverview';
+import MoviesAddMovieView from './components/MoviesAddMovieView';
+import MoviesAllMoviesView from './components/MoviesAllMoviesView';
+import MoviesEditMovieView from './components/MoviesEditMovieView';
 import MoviesPage from './components/MoviesPage';
 import SubscriptionsPage from './components/SubscriptionsPage';
 import type { RootState } from './app/store';
@@ -61,7 +64,11 @@ function App() {
         }
       >
         <Route index element={<MainPageOverview />} />
-        <Route path="movies" element={<MoviesPage />} />
+        <Route path="movies" element={<MoviesPage />}>
+          <Route index element={<MoviesAllMoviesView />} />
+          <Route path="add-movie" element={<MoviesAddMovieView />} />
+          <Route path="edit/:movieId" element={<MoviesEditMovieView />} />
+        </Route>
         <Route path="subscriptions" element={<SubscriptionsPage />} />
         <Route
           path="manage-users"

@@ -52,6 +52,7 @@ Current user shape:
 - `id`
 - `username`
 - `joinedAt`
+- `role`
 
 ### Current Behavior
 
@@ -61,13 +62,18 @@ Implemented:
 - auth state is saved to `localStorage`
 - auth state is loaded back into Redux when the app starts
 - refresh keeps the user logged in locally
+- `/main` is protected behind `ProtectedRoute`
+- `/main/manage-users` is protected behind `AdminRoute`
+- `MainPage` welcomes the logged-in user by username
+- `Log out` clears Redux auth state and returns the user to `/login`
 
 Important current limitation:
 
 - `id` and `joinedAt` are still temporary frontend-generated values
+- `role` is still a temporary frontend placeholder based on username
 - real backend login has not been connected yet
 - JWT authentication has not been added yet
-- the shared header that shows the username on every page has not been built yet
+- the role should eventually come from real backend auth data instead of frontend inference
 
 ### Validation
 
@@ -82,12 +88,113 @@ Validation completed during this chat:
 
 Recommended next steps when continuing:
 
-1. Add a shared layout/header.
-2. Read `state.auth.user` there.
-3. Show the username in the top-right corner on every page.
-4. Add logout behavior.
-5. Replace temporary login data with real backend auth response.
-6. Add JWT-based login flow later if desired.
+1. Replace temporary login data with a real backend auth response.
+2. Move role ownership from frontend username checks to backend data.
+3. Connect route protection to real auth and permissions from the server.
+4. Add JWT-based login flow later if desired.
+5. Decide whether the app should keep a shared header in addition to the current `MainPage` shell.
+
+## Frontend Client Progress
+
+This section tracks the non-auth frontend work added in `Client/vite-project` so far.
+
+### Routing and Main Shell
+
+Completed:
+
+- `App.tsx` now acts as the route hub for the client
+- `/` redirects to `/login` or `/main` based on auth state
+- `/login` and `/create-account` are public routes
+- `/main` is a protected parent route
+- `/main` now renders nested routes through `MainPage`
+- `/main/movies` is a nested movies area
+- `/main/subscriptions` is a nested subscriptions area
+- `/main/manage-users` is a nested Admin-only area
+- `MainPage` shows `Movies`, `Subscriptions`, `Users Management`, and `Log out`
+- `Users Management` only appears for `Admin`
+- `MainPageOverview` shows the default message when no section is selected yet
+
+Why this direction was chosen:
+
+- keep routing logic in one file
+- make each page its own component
+- let feature areas grow with nested routes instead of one large screen
+- gate Admin-only UI from the current auth state
+
+### CSS Organization
+
+Completed:
+
+- frontend styles were consolidated into `Client/vite-project/src/css`
+- shared visual foundations live in `theme.css` and `global.css`
+- feature pages reuse shared classes such as `page-shell`, `auth-card`, and `button-link`
+
+Why this direction was chosen:
+
+- keep styles easier to find
+- avoid scattering CSS across unrelated folders
+- establish a reusable visual base before more feature pages are added
+
+### Manage Users Area
+
+Completed:
+
+- `ManageUsersPage` now uses nested routing with `All Users` and `Add User` tabs
+- local page state starts from `mockManageUsers`
+- outlet context provides `users`, `addUser`, `deleteUser`, and `updateUser`
+- `ManageUsersUsersView` shows the main list screen
+- `UsersList` maps over the users collection and shows an empty state when needed
+- `UserListItem` shows each user's main details plus permission badges
+- `ManageUsersAddUserView` adds new users through a local form
+- `EditUser` updates existing users through a local form
+- delete is handled directly from the list screen
+
+Current behavior in this area:
+
+- add user validates required fields and blocks duplicate usernames
+- add user creates a temporary id on the client
+- edit user keeps `Created Date` read-only
+- create, update, and delete permissions automatically require the matching view permission
+- removing `View Movies` or `View Subscriptions` also removes the dependent permissions
+- user data is still local mock state for now, not backend data yet
+
+### Movies Area
+
+Completed:
+
+- `MoviesPage` now uses nested routing with `All Movies` and `Add Movie` tabs
+- local page state starts from `mockMovies`
+- outlet context provides `movies`, `addMovie`, `deleteMovie`, and `updateMovie`
+- `MoviesAllMoviesView` shows the movies list screen
+- `MoviesList` mirrors the same list pattern used in the users area
+- `MovieListItem` shows each movie's image, name, year, `Edit`, and `Delete`
+- each movie card also shows the subscriptions that watched that movie
+- watched subscriptions are rendered as `Member Name (Year)`
+- `MoviesEditMovieView` route exists as a placeholder screen
+- `MoviesAddMovieView` route exists as a placeholder screen
+
+Current behavior in this area:
+
+- movie list data is still local mock state for now, not backend data yet
+- delete works on local state
+- edit currently navigates to the placeholder edit page
+- add movie form has not been built yet
+
+### Current Frontend Limitations
+
+- login is still frontend-only and does not call the backend
+- role detection is still based on username instead of real user data
+- users data is still mock local state
+- movies data is still mock local state
+- subscriptions page is still a placeholder
+- add movie and edit movie forms are still placeholders
+
+### Frontend Validation So Far
+
+- `npm run build` passed after the auth/store setup
+- `npm run build` passed after route protection and feature-page routing
+- `npm run build` passed after the Manage Users flow was added
+- `npm run build` passed after the Movies list flow was added
 
 ## Agreed Architecture
 

@@ -8,6 +8,10 @@ import '../css/ManageUsersPage.css';
 function ManageUsersPage() {
   const [users, setUsers] = useState<ManageUser[]>(mockManageUsers);
 
+  const handleAddUser = (newUser: ManageUser) => {
+    setUsers((currentUsers) => [...currentUsers, newUser]);
+  };
+
   const handleDeleteUser = (userId: string) => {
     setUsers((currentUsers) =>
       currentUsers.filter((user) => user.id !== userId)
@@ -24,6 +28,7 @@ function ManageUsersPage() {
 
   const outletContext: ManageUsersOutletContext = {
     users,
+    addUser: handleAddUser,
     deleteUser: handleDeleteUser,
     updateUser: handleUpdateUser,
   };
