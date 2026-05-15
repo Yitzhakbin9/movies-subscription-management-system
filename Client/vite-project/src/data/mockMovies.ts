@@ -4,9 +4,10 @@ export const mockMovies: ManageMovie[] = [
   {
     id: 'movie-1',
     name: 'The Matrix',
-    year: 1999,
+    genres: ['Action', 'Sci-Fi'],
     imageUrl:
       'https://placehold.co/280x400/0f172a/f8fafc?text=The+Matrix',
+    premieredAt: '1999-03-31',
     subscriptions: [
       {
         id: 'matrix-sub-1',
@@ -23,9 +24,10 @@ export const mockMovies: ManageMovie[] = [
   {
     id: 'movie-2',
     name: 'Inception',
-    year: 2010,
+    genres: ['Action', 'Mystery', 'Sci-Fi'],
     imageUrl:
       'https://placehold.co/280x400/1e293b/f8fafc?text=Inception',
+    premieredAt: '2010-07-16',
     subscriptions: [
       {
         id: 'inception-sub-1',
@@ -37,9 +39,10 @@ export const mockMovies: ManageMovie[] = [
   {
     id: 'movie-3',
     name: 'Interstellar',
-    year: 2014,
+    genres: ['Adventure', 'Drama', 'Sci-Fi'],
     imageUrl:
       'https://placehold.co/280x400/172554/f8fafc?text=Interstellar',
+    premieredAt: '2014-11-07',
     subscriptions: [],
   },
 ];

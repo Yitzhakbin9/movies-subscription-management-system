@@ -5,18 +5,20 @@ interface MoviesListProps {
   movies: ManageMovie[];
   onDeleteMovie: (movieId: string) => void;
   onEditMovie: (movieId: string) => void;
+  emptyMessage?: string;
 }
 
 function MoviesList({
   movies,
   onDeleteMovie,
   onEditMovie,
+  emptyMessage = 'There are no movies to show right now.',
 }: MoviesListProps) {
   if (movies.length === 0) {
     return (
       <div className="manage-users-empty-state">
         <p className="manage-users-section-text">
-          There are no movies to show right now.
+          {emptyMessage}
         </p>
       </div>
     );

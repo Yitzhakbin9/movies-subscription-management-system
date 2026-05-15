@@ -4,7 +4,7 @@ import MoviesList from './MoviesList';
 
 function MoviesAllMoviesView() {
   const navigate = useNavigate();
-  const { movies, deleteMovie } = useMoviesOutletContext();
+  const { filteredMovies, searchTerm, deleteMovie } = useMoviesOutletContext();
 
   const handleDeleteMovie = (movieId: string) => {
     deleteMovie(movieId);
@@ -23,10 +23,21 @@ function MoviesAllMoviesView() {
           the subscriptions that watched them.
         </p>
 
+        {searchTerm.trim() ? (
+          <p className="manage-users-section-text">
+            Showing results for "{searchTerm.trim()}".
+          </p>
+        ) : null}
+
         <MoviesList
-          movies={movies}
+          movies={filteredMovies}
           onDeleteMovie={handleDeleteMovie}
           onEditMovie={handleEditMovie}
+          emptyMessage={
+            searchTerm.trim()
+              ? `No movies matched "${searchTerm.trim()}".`
+              : 'There are no movies to show right now.'
+          }
         />
       </div>
     </section>

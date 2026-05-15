@@ -8,8 +8,11 @@ interface MovieListItemProps {
 
 const movieFieldLabels = [
   { label: 'Name', valueKey: 'name' },
-  { label: 'Year', valueKey: 'year' },
 ] as const;
+
+function getMovieYear(premieredAt: string) {
+  return new Date(premieredAt).getFullYear();
+}
 
 function MovieListItem({ movie, onDelete, onEdit }: MovieListItemProps) {
   return (
@@ -32,6 +35,29 @@ function MovieListItem({ movie, onDelete, onEdit }: MovieListItemProps) {
           ))}
 
           <div className="user-detail">
+            <span className="user-detail-label">Year</span>
+            <span className="user-detail-value">
+              {String(getMovieYear(movie.premieredAt))}
+            </span>
+          </div>
+
+          <div className="user-detail">
+            <span className="user-detail-label">Premiered At</span>
+            <span className="user-detail-value">{movie.premieredAt}</span>
+          </div>
+
+          <div className="user-detail movie-detail-wide">
+            <span className="user-detail-label">Genres</span>
+            <div className="movie-genres-list">
+              {movie.genres.map((genre) => (
+                <span className="movie-genre-badge" key={genre}>
+                  {genre}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="user-detail movie-detail-wide">
             <span className="user-detail-label">Subscriptions Watched</span>
             {movie.subscriptions.length > 0 ? (
               <div className="movie-subscriptions-list">

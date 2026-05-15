@@ -1,3 +1,5 @@
+import type { MovieGenre } from '../constants/movieGenres';
+
 export interface MovieSubscription {
   id: string;
   memberName: string;
@@ -7,7 +9,8 @@ export interface MovieSubscription {
 export interface ManageMovie {
   id: string;
   name: string;
-  year: number;
+  genres: MovieGenre[];
   imageUrl: string;
+  premieredAt: string;
   subscriptions: MovieSubscription[];
 }

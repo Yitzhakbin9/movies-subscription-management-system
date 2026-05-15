@@ -7,6 +7,11 @@ import '../css/ManageUsersPage.css';
 
 function MoviesPage() {
   const [movies, setMovies] = useState<ManageMovie[]>(mockMovies);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredMovies = movies.filter((movie) =>
+    movie.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+  );
 
   const handleAddMovie = (newMovie: ManageMovie) => {
     setMovies((currentMovies) => [...currentMovies, newMovie]);
@@ -28,6 +33,9 @@ function MoviesPage() {
 
   const outletContext: MoviesOutletContext = {
     movies,
+    filteredMovies,
+    searchTerm,
+    setSearchTerm,
     addMovie: handleAddMovie,
     deleteMovie: handleDeleteMovie,
     updateMovie: handleUpdateMovie,
@@ -64,6 +72,17 @@ function MoviesPage() {
           Add Movie
         </NavLink>
       </nav>
+
+      <label className="field manage-movie-search">
+        <span className="field-label">Search Movie By Name</span>
+        <input
+          type="text"
+          name="searchMovie"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Type a movie name"
+        />
+      </label>
 
       <Outlet context={outletContext} />
     </section>
