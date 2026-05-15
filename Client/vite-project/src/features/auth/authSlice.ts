@@ -17,13 +17,13 @@ const initialState: AuthState = {
   isAuthenticated: false,
 };
 
-debugger;
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     login: (state, action: PayloadAction<AuthUser>) => {
-      debugger;
+
       state.user = action.payload;
       state.isAuthenticated = true;
     },

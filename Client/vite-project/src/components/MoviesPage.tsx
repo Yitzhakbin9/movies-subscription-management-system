@@ -14,7 +14,9 @@ function MoviesPage() {
   );
 
   const handleAddMovie = (newMovie: ManageMovie) => {
-    setMovies((currentMovies) => [...currentMovies, newMovie]);
+    setMovies((currentMovies) => {
+      return [...currentMovies, newMovie];
+    });
   };
 
   const handleDeleteMovie = (movieId: string) => {
